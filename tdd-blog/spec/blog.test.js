@@ -32,45 +32,44 @@ describe('Blog', () => {
 
     blog.addBlogPost("How to Swim Fast", "Michael Phelps")
     blog.addBlogPost("Movie Review: Avatar")
-    // console.log(blog)
     expect(blog.getSpecificBlogAuthor("How to Swim Fast")).toEqual("Michael Phelps")
     expect(blog.getSpecificBlogAuthor("Makeup for Dummies")).toEqual("No such blog post")
     expect(blog.getSpecificBlogAuthor("Movie Review: Avatar")).toEqual("Blog has no author")
   })
 
 
-  // it('allows you to see all blogs of a specific genre', () => {
-  //   let blog = new Blog();
+  it('allows you to see all blogs of a specific genre', () => {
+    let blog = new Blog();
 
-  //   blog.addBlogPost("How to Swim Fast", "Michael Phelps", "Sports")
-  //   blog.addBlogPost("I Love Football!", "Tom Brady", "Sports")
-  //   blog.addBlogPost("A Blog About Shoes", "Steve Madden", "Fashion")
-  //   blog.addBlogPost("Gardening in High Altitudes", "The Garden Master", "Home Improvement")
-  //   expect(blog.getBlogsFromGenre("Sports")).toEqual([
-  //     {
-  //       title: "How to Swim Fast",
-  //       author: "Michael Phelps",
-  //       genre: "Sports"
-  //     },
-  //     {
-  //       title: "I Love Football!",
-  //       author: "Tom Brady",
-  //       genre: "Sports"
-  //     }
-  //   ])
-  // })
+    blog.addBlogPost("How to Swim Fast", "Michael Phelps", "Sports")
+    blog.addBlogPost("I Love Football!", "Tom Brady", "Sports")
+    blog.addBlogPost("A Blog About Shoes", "Steve Madden", "Fashion")
+    blog.addBlogPost("Gardening in High Altitudes", "The Garden Master", "Home Improvement")
+    expect(blog.getBlogsFromGenre("Sports")).toEqual([
+      {
+        title: "How to Swim Fast",
+        author: "Michael Phelps",
+        genre: "Sports"
+      },
+      {
+        title: "I Love Football!",
+        author: "Tom Brady",
+        genre: "Sports"
+      }
+    ])
+  })
 
 
-  // it('allows you to see all available genres of blogs', () => {
-  //   let blog = new Blog();
-  //   expect(blog.getAllGenres()).toEqual("There are no genres available")
+  it('allows you to see all available genres of blogs', () => {
+    let blog = new Blog();
+    expect(blog.getAllGenres()).toEqual("There are no genres available")
 
-  //   blog.addBlogPost("How to Swim Fast", "Michael Phelps", "Sports")
-  //   blog.addBlogPost("I Love Football!", "Tom Brady", "Sports")
-  //   blog.addBlogPost("A Blog About Shoes", "Steve Madden", "Fashion")
-  //   blog.addBlogPost("Gardening in High Altitudes", "The Garden Master", "Home Improvement")
-  //   expect(blog.getAllGenres()).toEqual(["Sports", "Sports", "Fashion", "Home Improvement"])
-  // })
+    blog.addBlogPost("How to Swim Fast", "Michael Phelps", "Sports")
+    blog.addBlogPost("I Love Football!", "Tom Brady", "Sports")
+    blog.addBlogPost("A Blog About Shoes", "Steve Madden", "Fashion")
+    blog.addBlogPost("Gardening in High Altitudes", "The Garden Master", "Home Improvement")
+    expect(blog.getAllGenres()).toEqual(["Sports", "Sports", "Fashion", "Home Improvement"])
+  })
 
 
   // it('it allows a user to add comments to a blog', () => {

@@ -1,8 +1,9 @@
 class Blog {
-  constructor(blogPosts, blogAuthors, postsAuthor) {
+  constructor(blogPosts, blogAuthors, postsAuthor, blogGenre) {
     this.blogPosts = [];
     this.blogAuthors = [];
     this.postsAuthor = [];
+    this.blogGenre = [];
   }
 
 getBlogPosts () {
@@ -14,7 +15,7 @@ else {
 }
 }
 
-addBlogPost (posts, authors) {
+addBlogPost (posts, authors, genres) {
  if (posts) {
   this.blogPosts.push(posts)
  }
@@ -23,8 +24,12 @@ addBlogPost (posts, authors) {
   this.blogAuthors.push(authors)
 }
 
-if (posts || authors) {
+if (posts || authors ) {
   this.postsAuthor.push({posts: posts, author: authors})
+}
+
+if(posts || authors || genres){
+  this.blogGenre.push({title: posts, author: authors, genre: genres})
 }
 }
 
@@ -32,6 +37,45 @@ getBlogAuthors () {
   return this.blogAuthors
 }
 
+getSpecificBlogAuthor (post) {
+  for(let i = 0; i < this.postsAuthor.length; i++){
+    if(post === this.postsAuthor[i].posts){
+      if(this.postsAuthor[i].author === undefined){
+        return "Blog has no author"
+      }
+      return this.postsAuthor[i].author
+    }
+  }
+  return "No such blog post"
+}
+
+getBlogsFromGenre (genre) {
+const filtered = [];
+for(let i = 0; i < this.blogGenre.length; i++){
+  let newArray = this.blogGenre[i]
+    if(genre === newArray.genre){
+      filtered.push(newArray)
+    }
+  }
+  return filtered
+}
+
+getAllGenres() {
+  if(this.blogGenre.length === 0){
+    return "There are no genres available"
+  }
+  const genreValuesArray = this.blogGenre.map(element => element.genre)
+  return genreValuesArray
+}
+}
+
+
+module.exports = Blog
+
+
+
+
+//Information about specific blog author method
 // [
 //   { posts: 'How to Swim Fast',
 //     author: 'Micheal Phelps'
@@ -51,32 +95,9 @@ getBlogAuthors () {
 // if we finish checking all elements and have not returned anything,
 // then the blog post doesn't exist and we return such
 
-getSpecificBlogAuthor (post) {
-  for(let i = 0; i < this.postsAuthor.length; i++){
-      // console.log(this.postsAuthor[0].posts)
-    if(post === this.postsAuthor[i].posts){
-      if(this.postsAuthor[i].author === undefined){
-        return "Blog has no author"
-      }
-      return this.postsAuthor[i].author
-    }
-    // else if(post !== this.postsAuthor[i].posts){
-    //   console.log("1", post)
-    //   console.log("2", this.postsAuthor[i].posts)
-    // return "No such blog post"
-    // }
-    // else if(this.postsAuthor[i].posts === post){
-    //   console.log(this.postsAuthor[i].author)
-    //   if(this.postsAuthor[i].author === undefined){
-    //     return "Blog has no author"
-    //   }
-    // }
 
-  }
-  return "No such blog post"
-}
 
-}
+
 
 
 
@@ -110,4 +131,3 @@ getSpecificBlogAuthor (post) {
 
 
 
-module.exports = Blog
