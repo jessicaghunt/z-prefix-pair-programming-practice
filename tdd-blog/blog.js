@@ -1,9 +1,11 @@
 class Blog {
-  constructor(blogPosts, blogAuthors, postsAuthor, blogGenre) {
+  constructor(blogPosts, blogAuthors, postsAuthor, blogGenre, blogComments) {
     this.blogPosts = [];
     this.blogAuthors = [];
     this.postsAuthor = [];
     this.blogGenre = [];
+    this.blogComments =[];
+
   }
 
 getBlogPosts () {
@@ -11,13 +13,21 @@ getBlogPosts () {
     return "There are 0 blog posts"
   }
 else {
-  return this.blogPosts
+  for(let i = 0; i < this.blogPosts.length; i++){
+    return this.blogPosts.map(post => post.title)
+  }
+
 }
 }
 
 addBlogPost (posts, authors, genres) {
  if (posts) {
-  this.blogPosts.push(posts)
+  this.blogPosts.push({
+    title: posts,
+    author: authors,
+    genre: genres,
+    comments: [],
+  });
  }
 
  if (authors) {
@@ -31,6 +41,7 @@ if (posts || authors ) {
 if(posts || authors || genres){
   this.blogGenre.push({title: posts, author: authors, genre: genres})
 }
+
 }
 
 getBlogAuthors () {
@@ -67,6 +78,61 @@ getAllGenres() {
   const genreValuesArray = this.blogGenre.map(element => element.genre)
   return genreValuesArray
 }
+
+addComment(posts, user, comment) {
+  for(let i = 0; i < this.blogPosts.length; i++){
+      if(this.blogPosts[i].title === posts) {
+          this.blogPosts[i].comments.push({user: user, comment: comment});
+        }
+      }
+   return;
+    }
+
+
+getBlogComments(title) {
+  const post = this.blogPosts.find(post => post.title === title);
+  if(post.comments.length === 0){
+    return [];
+  }
+    return [{comments: post.comments}]
+}
+
+getCommentsBy(user) {
+  const userComments = [];
+  for(let i = 0; i < this.blogPosts.length; i++){
+    if(this.blogPosts[i].comments.length > 0){
+      for(let j = 0; j < this.blogPosts[i].comments.length; j++){
+        if(this.blogPosts[i].comments[j].user === user){
+          userComments.push({article: this.blogPosts[i].title, comment: this.blogPosts[i].comments[j].comment})
+        }
+      }
+    }
+  }
+  return ({user: user, comments: userComments})
+}
+
+deleteBlog(posts){
+  for(let i = 0; i < this.blogPosts.length; i++){
+    if(posts === this.blogPosts[i].title){
+
+    const index =this.blogPosts.indexOf(this.blogPosts[i].title)
+
+      this.blogPosts.splice(index, 4)
+      console.log(this.blogPosts)
+    }
+  }
+}
+
+
+//
+// const myArray = [1, 2, 3, 4, 5];
+
+// const x = myArray.splice(1, 1);
+
+// console.log(`myArray values: ${myArray}`);
+// console.log(`variable x value: ${x}`);
+
+
 }
 
 

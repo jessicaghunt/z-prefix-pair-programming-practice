@@ -72,62 +72,62 @@ describe('Blog', () => {
   })
 
 
-  // it('it allows a user to add comments to a blog', () => {
-  //   let blog = new Blog();
+  it('it allows a user to add comments to a blog', () => {
+    let blog = new Blog();
 
-  //   blog.addBlogPost("How to Swim Fast", "Michael Phelps", "Sports")
-  //   blog.addBlogPost("I Love Football!", "Tom Brady", "Sports")
-  //   expect(blog.getBlogComments("How to Swim Fast")).toEqual([])
+    blog.addBlogPost("How to Swim Fast", "Michael Phelps", "Sports")
+    blog.addBlogPost("I Love Football!", "Tom Brady", "Sports")
+    expect(blog.getBlogComments("How to Swim Fast")).toEqual([])
 
-  //   blog.addComment("How to Swim Fast", "katiehoesley", "I hate this article!")
-  //   blog.addComment("I Love Football!", "ashcoca", "I love football too! Lol!")
-  //   blog.addComment("I Love Football!", "brandon_ck", "GO FALCONS!")
-  //   expect(blog.getBlogComments("How to Swim Fast")).toEqual([
-  //     {
-  //       comments: [{ user: "katiehoesley", comment: "I hate this article!" }]
-  //     }
-  //   ])
-  //   expect(blog.getBlogComments("I Love Football!")).toEqual([
-  //     {
-  //       comments: [
-  //         { user: "ashcoca",comment: "I love football too! Lol!" },
-  //         { user: "brandon_ck", comment: "GO FALCONS!" }
-  //       ]
-  //     },
-  //   ])
-  // })
-
-
-  // it('allows you to see all comments written by a specific user', () => {
-  //   let blog = new Blog();
-
-  //   blog.addBlogPost("How to Swim Fast", "Michael Phelps", "Sports")
-  //   blog.addBlogPost("I Love Football!", "Tom Brady", "Sports")
-  //   blog.addComment("How to Swim Fast", "katiehoesley", "I hate this article!")
-  //   blog.addComment("I Love Football!", "ashcoca", "I love football too! Lol!")
-  //   blog.addComment("I Love Football!", "brandon_ck", "GO FALCONS!")
-  //   expect(blog.getCommentsBy("katiehoesley")).toEqual({ user: "katiehoesley", comments:
-  //     [
-  //       { article: "How to Swim Fast", comment: "I hate this article!"}
-  //     ]
-  //   })
-  // })
+    blog.addComment("How to Swim Fast", "katiehoesley", "I hate this article!")
+    blog.addComment("I Love Football!", "ashcoca", "I love football too! Lol!")
+    blog.addComment("I Love Football!", "brandon_ck", "GO FALCONS!")
+    expect(blog.getBlogComments("How to Swim Fast")).toEqual([
+      {
+        comments: [{ user: "katiehoesley", comment: "I hate this article!" }]
+      }
+    ])
+    expect(blog.getBlogComments("I Love Football!")).toEqual([
+      {
+        comments: [
+          { user: "ashcoca",comment: "I love football too! Lol!" },
+          { user: "brandon_ck", comment: "GO FALCONS!" }
+        ]
+      },
+    ])
+  })
 
 
+  it('allows you to see all comments written by a specific user', () => {
+    let blog = new Blog();
 
-  // it('can delete a blog by the blog title', () => {
-  //   let blog = new Blog();
+    blog.addBlogPost("How to Swim Fast", "Michael Phelps", "Sports")
+    blog.addBlogPost("I Love Football!", "Tom Brady", "Sports")
+    blog.addComment("How to Swim Fast", "katiehoesley", "I hate this article!")
+    blog.addComment("I Love Football!", "ashcoca", "I love football too! Lol!")
+    blog.addComment("I Love Football!", "brandon_ck", "GO FALCONS!")
+    expect(blog.getCommentsBy("katiehoesley")).toEqual({ user: "katiehoesley", comments:
+      [
+        { article: "How to Swim Fast", comment: "I hate this article!"}
+      ]
+    })
+  })
 
-  //   blog.addBlogPost("I Love Football!", "Tom Brady", "Sports")
-  //   blog.addBlogPost("How to Swim Fast", "Michael Phelps", "Sports")
-  //   expect(blog.getBlogPosts()).toEqual(["I Love Football!", "How to Swim Fast"])
 
-  //   blog.addComment("How to Swim Fast", "katiehoesley", "I hate this article!")
-  //   blog.deleteBlog("How to Swim Fast")
-  //   expect(blog.getBlogPosts()).toEqual(["I Love Football!"])
 
-  //   blog.deleteBlog("I Love Football!")
-  //   expect(blog.getBlogPosts()).toEqual("There are 0 blog posts")
-  // })
+  it('can delete a blog by the blog title', () => {
+    let blog = new Blog();
+
+    blog.addBlogPost("I Love Football!", "Tom Brady", "Sports")
+    blog.addBlogPost("How to Swim Fast", "Michael Phelps", "Sports")
+    expect(blog.getBlogPosts()).toEqual(["I Love Football!", "How to Swim Fast"])
+
+    blog.addComment("How to Swim Fast", "katiehoesley", "I hate this article!")
+    blog.deleteBlog("How to Swim Fast")
+    expect(blog.getBlogPosts()).toEqual(["I Love Football!"])
+
+    blog.deleteBlog("I Love Football!")
+    expect(blog.getBlogPosts()).toEqual("There are 0 blog posts")
+  })
 
 })
